@@ -29,8 +29,10 @@ export function ProductEditForm({ onClose, data, id }) {
       description,
       stock_level,
       price,
-      supplier,
+      supplier_id: supplier,
     };
+
+    console.log(updatedProduct);
 
     const { success } = await updateProduct(id, updatedProduct);
     if (!success) return notify("Something went wrong", "error");
@@ -39,7 +41,6 @@ export function ProductEditForm({ onClose, data, id }) {
     onClose();
   };
 
-  // Check if `data` exists before rendering the form
   if (!data) return <p>Loading...</p>;
 
   return (
