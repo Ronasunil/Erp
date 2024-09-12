@@ -1,6 +1,19 @@
-function Table({ headers, rows }) {
+"use client";
+
+import { useState } from "react";
+import { Button } from "./Button";
+import { Modal } from "./Modal";
+import { ProductForm } from "./ProductForm";
+
+import { TableRow } from "./TableRow";
+
+export function Table({ headers, rows, btn = false, btnPlaceholder = "" }) {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const toggleModal = () => setModalOpen(!isModalOpen);
+
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div className="relative overflow-x-auto sm:rounded-lg p-16">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
@@ -9,26 +22,27 @@ function Table({ headers, rows }) {
                 {header}
               </th>
             ))}
+            <th className="px-6 py-3" scope="col">
+              Actions
+            </th>
           </tr>
         </thead>
         <tbody>
           {rows.map((row, index) => (
-            <tr
-              key={index}
-              className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
-            >
-              {row.map((item, index) => (
-                <th
-                  key={index}
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  {item}
-                </th>
-              ))}
-            </tr>
+            <TableRow row={row} key={index} />
           ))}
         </tbody>
       </table>
+
+      {btn && (
+        <Button onClick={toggleModal} type="create">
+          {btnPlaceholder}
+        </Button>
+      )}
+
+      <Modal isOpen={isModalOpen} onClose={toggleModal}>
+        <ProductForm onClose={toggleModal} />
+      </Modal>
     </div>
   );
 }
