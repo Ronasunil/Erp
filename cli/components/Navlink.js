@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 export function NavLink({ children, href }) {
   const pathName = usePathname();
-  console.log(pathName);
+
   const active = pathName === href;
   const activeClass = active ? "bg-gray-600 inline-block  p-2 rounded-lg" : "";
 
