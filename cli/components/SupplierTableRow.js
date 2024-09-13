@@ -9,6 +9,7 @@ import { Modal } from "./Modal";
 import { SupplierForm } from "./SupplierForm";
 import { getSupplierSrv } from "@/libs/service";
 import { deleteSupplier } from "@/app/actions/deleteSupplier";
+import { SupplierEditForm } from "./SupplierEditForm";
 
 export function SupplierTableRow({ row }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,11 +45,7 @@ export function SupplierTableRow({ row }) {
       </td>
 
       <Modal isOpen={isModalOpen} onClose={toggleModal}>
-        <SupplierForm
-          onClose={toggleModal}
-          action="update"
-          data={supplierData}
-        />
+        <SupplierEditForm onClose={toggleModal} id={row.id} />
       </Modal>
     </tr>
   );

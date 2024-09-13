@@ -8,5 +8,7 @@ export const createProduct = async function (data) {
     axios.post(`${process.env.LOCAL_URL}/api/v1/products`, data);
     revalidatePath("/products");
     return { success: true };
-  } catch (err) {}
+  } catch (err) {
+    return { success: false };
+  }
 };

@@ -3,18 +3,32 @@ import { notify } from "@/utils/helper";
 import { createSupplier } from "@/app/actions/createSupplier";
 import { ModalInput } from "./ModalInput";
 import { Button } from "./Button";
+import { useSupplier } from "@/hooks/useSuppliers";
+import { useEffect } from "react";
+import { editSupplier } from "@/app/actions/editSupplier";
 
-export function SupplierForm({ onClose }) {
+export function SupplierEditForm({ onClose, id }) {
+  const { isLoading, supplier } = useSupplier(id);
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
+  useEffect(() => {
+    if (supplier) {
+      reset({
+        name: supplier.name,
+        contact_info: supplier.contact_info,
+      });
+    }
+  }, [supplier, reset]);
+
   const onSubmit = async (formData) => {
-    console.log(formData);
-    const { success } = await createSupplier(formData);
-    if (success) notify("Supplier created");
+    const { success } = await editSupplier(id, formData);
+    if (success) notify("Supplier Edited");
     else notify("Something went wrong", "error");
 
     onClose();
