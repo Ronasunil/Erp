@@ -13,15 +13,16 @@ const createStock = async (req, res) => {
   if (!product) return;
 
   console.log(product.stock_level, quantity, product.stock_level < quantity);
+
   //   managing stock
   if (transaction_type === "sale" && +product.stock_level > +quantity)
     product.stock_level -= quantity;
-  else if (+product.stock_level < +quantity) {
+  else if (transaction_type === "sale" && product.stock_level < quantity) {
     console.log("send");
     return res
       .status(httpStatus.OK)
       .json({ message: "Insufficient stock", status: "fail" });
-  } else product.stock_level += quantity;
+  } else product.stock_level = product.stock_level + +quantity;
 
   await product.save();
 

@@ -55,8 +55,8 @@
     width: 60px;
     aspect-ratio: 1;
     border-radius: 50%;
-    border: 8px solid #fff;
-    border-right-color: #fff;
+    border: 8px solid #1f2937;
+    border-right-color: transparent;
     animation: rotate 1s infinite linear;
   }
 

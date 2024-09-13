@@ -6,12 +6,19 @@ export async function Products() {
     data: { products },
   } = await serverFetch(`${process.env.LOCAL_URL}/api/v1/products`, "GET");
 
-  const headers = ["Name", "Description", "Price", "Stock level"];
+  const headers = ["Name", "Description", "Price", "Supplier", "Stock level"];
 
   const rows = products.map(
-    ({ _id, name, description, price, stock_level }) => ({
+    ({
+      _id,
+      name,
+      description,
+      price,
+      stock_level,
+      supplier_id: { name: supplierName },
+    }) => ({
       id: _id,
-      data: [name, description, price, stock_level],
+      data: [name, description, price, supplierName, stock_level],
     })
   );
 
