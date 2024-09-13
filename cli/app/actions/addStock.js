@@ -10,7 +10,6 @@ export const addStock = async function (stock) {
       stock
     );
 
-    console.log("from serveer", data);
     if (data.status === "fail") return { success: "fail" };
 
     revalidatePath("/products");

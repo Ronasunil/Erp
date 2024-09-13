@@ -44,7 +44,7 @@ export function SupplierEditForm({ onClose, id }) {
           errors={errors}
         />
         <ModalInput
-          labelName="Contact Info"
+          labelName="Contact_Info"
           register={register("contact_info", {
             required: "This field is required",
             minLength: {

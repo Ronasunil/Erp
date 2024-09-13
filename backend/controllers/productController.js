@@ -43,8 +43,10 @@ const deletePost = async (req, res) => {
 };
 
 const getProducts = async (req, res) => {
-  const products = await productModel.find().populate("");
-
+  const products = await productModel
+    .find()
+    .populate({ path: "supplier_id", select: "name" });
+  console.log(products);
   res.status(httpStatus.OK).json({ message: "Products", products });
 };
 
