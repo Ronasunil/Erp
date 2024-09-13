@@ -55,10 +55,18 @@ const getProduct = async (req, res) => {
   res.status(httpStatus.OK).json({ message: "Products", product });
 };
 
+const getProductsName = async (req, res) => {
+  console.log("recived");
+  const products = await productModel.find().select("_id name stock_level");
+
+  res.status(httpStatus.OK).json({ message: "Products", products });
+};
+
 module.exports = {
   createPost,
   updatePost,
   deletePost,
   getProducts,
   getProduct,
+  getProductsName,
 };
