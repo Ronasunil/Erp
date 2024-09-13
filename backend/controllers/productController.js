@@ -7,9 +7,11 @@ const createPost = async (req, res) => {
 
   const product = { name, description, price, stock_level, supplier_id };
 
-  await productModel.create(product);
+  const createdProduct = await productModel.create(product);
 
-  res.status(httpStatus.OK).json({ message: "product created", product });
+  res
+    .status(httpStatus.OK)
+    .json({ message: "product created", product: createdProduct });
 };
 
 const updatePost = async (req, res) => {
