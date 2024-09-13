@@ -16,6 +16,12 @@ export async function Products() {
   );
 
   return (
-    <Table headers={headers} rows={rows} btn={true} btnPlaceholder="create" />
+    <Table
+      headers={headers}
+      rows={rows}
+      btn={true}
+      btnPlaceholder="create"
+      modal={true}
+    />
   );
 }

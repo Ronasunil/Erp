@@ -28,3 +28,27 @@ export function useSuppliers() {
 
   return { suppliers, isLoading };
 }
+
+export function useSupplier(id) {
+  const [isLoading, setIsLoading] = useState(true); // Initially loading
+  const [supplier, setSupplier] = useState(null);
+
+  useEffect(() => {
+    const getSupplier = async () => {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:3001/api/v1/suppliers/${id}`
+        );
+        setSupplier(data.supplier);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setIsLoading(false); // Set loading to false after fetching data
+      }
+    };
+
+    if (id) getSupplier();
+  }, [id]); // Trigger fetching when `id` changes
+
+  return { isLoading, supplier };
+}

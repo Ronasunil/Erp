@@ -6,14 +6,17 @@ const {
   getProducts,
   getProduct,
   getProductsName,
+  getLowQuantityProducts,
 } = require("../controllers/productController");
 const productRouter = Router();
 
 productRouter.post("/products", createPost);
+productRouter.get("/products", getProducts);
+productRouter.get("/product/name", getProductsName);
+productRouter.get("/products/lowQuantity", getLowQuantityProducts);
+productRouter.get("/products/:productId", getProduct);
+
 productRouter.patch("/products/:productId", updatePost);
 productRouter.delete("/products/:productId", deletePost);
-productRouter.get("/products", getProducts);
-productRouter.get("/products/:productId", getProduct);
-productRouter.get("/product/name", getProductsName);
 
 module.exports = { productRouter };

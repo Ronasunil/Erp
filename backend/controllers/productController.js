@@ -56,8 +56,13 @@ const getProduct = async (req, res) => {
 };
 
 const getProductsName = async (req, res) => {
-  console.log("recived");
   const products = await productModel.find().select("_id name stock_level");
+
+  res.status(httpStatus.OK).json({ message: "Products", products });
+};
+
+const getLowQuantityProducts = async (req, res) => {
+  const products = await productModel.find({ stock_level: { $lt: 10 } });
 
   res.status(httpStatus.OK).json({ message: "Products", products });
 };
@@ -69,4 +74,5 @@ module.exports = {
   getProducts,
   getProduct,
   getProductsName,
+  getLowQuantityProducts,
 };

@@ -10,5 +10,6 @@ export const editSupplier = async function (id, data) {
     return { success: true };
   } catch (err) {
     console.error(err.message);
+    return { success: false };
   }
 };

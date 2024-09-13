@@ -7,7 +7,13 @@ import { ProductForm } from "./ProductForm";
 
 import { TableRow } from "./TableRow";
 
-export function Table({ headers, rows, btn = false, btnPlaceholder = "" }) {
+export function Table({
+  headers,
+  rows,
+  btn = false,
+  btnPlaceholder = "",
+  modal = false,
+}) {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const toggleModal = () => setModalOpen(!isModalOpen);
@@ -40,9 +46,11 @@ export function Table({ headers, rows, btn = false, btnPlaceholder = "" }) {
         </Button>
       )}
 
-      <Modal isOpen={isModalOpen} onClose={toggleModal}>
-        <ProductForm onClose={toggleModal} />
-      </Modal>
+      {modal && (
+        <Modal isOpen={isModalOpen} onClose={toggleModal}>
+          <ProductForm onClose={toggleModal} />
+        </Modal>
+      )}
     </div>
   );
 }
