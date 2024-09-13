@@ -1,4 +1,4 @@
-export function InputField({ errors, register, name }) {
+export function InputField({ errors, register = {}, name }) {
   return (
     <div className="flex  flex-col gap-2">
       <input

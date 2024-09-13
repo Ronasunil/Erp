@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Button } from "./Button";
 import { Modal } from "./Modal";
 
-import { TableRow } from "./TableRow";
 import { SupplierForm } from "./SupplierForm";
 import { SupplierTableRow } from "./SupplierTableRow";
 

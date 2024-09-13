@@ -9,6 +9,7 @@ const cors = require("cors");
 const { productRouter } = require("./routes/productRoutes");
 
 const { supplierRouter } = require("./routes/supplierRoutes");
+const { stockRouter } = require("./routes/stockRoutes");
 
 const app = express();
 
@@ -23,6 +24,7 @@ const api = process.env.API_VERSION;
 
 app.use(api, productRouter);
 app.use(api, supplierRouter);
+app.use(api, stockRouter);
 
 app.all("*", (req, res) => {
   res.status(httpStatus.NOT_FOUND).json({ message: `${req.url} not found` });
